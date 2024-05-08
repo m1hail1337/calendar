@@ -1,0 +1,27 @@
+server:
+  port: 8080
+jwt:
+  secret: 71e0cbb9db5dfdcd18f79bb9655bd5af65016760cb00bd0b23304c6587f794a9
+  lifetime: 10m
+spring:
+  main:
+    banner-mode: off
+  output:
+    ansi:
+      enabled: ALWAYS
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/db.changelog-master.yml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/calendar
+    username: admin
+    password: admin
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: none
+        format_sql: true

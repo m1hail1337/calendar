@@ -1,5 +1,21 @@
 services:
+  application:
+    container_name: calendar-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: calendar-app:latest
+    restart: no
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db/calendar
+    ports:
+      - 8080:8080
+    networks:
+      - calendar-app-network
+    depends_on:
+      - db
   db:
+    container_name: calendar-db
     image: postgres:latest
     restart: unless-stopped
     environment:
@@ -7,9 +23,15 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: admin
     ports:
-      - "5432:5432"
+      - 54321:5432
     volumes:
       - db:/var/lib/postgresql/data
+    networks:
+      - calendar-app-network
+
+networks:
+  calendar-app-network:
+    driver: bridge
 
 volumes:
   db:

@@ -5,10 +5,14 @@ plugins {
 }
 
 group = 'ru.semenov'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0'
 
 java {
 	sourceCompatibility = '17'
+}
+
+jar {
+	enabled = false
 }
 
 configurations {

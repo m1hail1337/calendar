@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      no_cache: true
     image: calendar-app:latest
     restart: no
     environment:
